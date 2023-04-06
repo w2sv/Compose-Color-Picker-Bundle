@@ -1,7 +1,11 @@
 package com.smarttoolfactory.colorpicker.util
 
 import androidx.compose.ui.geometry.Offset
-import kotlin.math.*
+import kotlin.math.PI
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 /**
  * [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) function that moves

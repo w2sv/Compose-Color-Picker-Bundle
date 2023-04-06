@@ -114,6 +114,7 @@ fun ColorDisplayExposedSelectionMenu(
                         modifier = Modifier.weight(1f)
                     )
                 }
+
                 ColorModel.HSV -> {
                     val hsvArray = ColorUtil.colorToHSV(color)
                     ColorText(

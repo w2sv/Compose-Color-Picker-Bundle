@@ -12,9 +12,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.colorpicker.ui.Grey400
 import com.smarttoolfactory.extendedcolors.util.fractionToIntPercent
-import com.smarttoolfactory.slider.SliderBrushColor
 import com.smarttoolfactory.slider.ColorfulSlider
 import com.smarttoolfactory.slider.MaterialSliderDefaults
+import com.smarttoolfactory.slider.SliderBrushColor
 import com.smarttoolfactory.slider.ui.InactiveTrackColor
 
 @Composable

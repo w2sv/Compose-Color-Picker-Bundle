@@ -2,7 +2,11 @@ package com.smarttoolfactory.colorpicker.slider
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.smarttoolfactory.colorpicker.model.*
+import com.smarttoolfactory.colorpicker.model.ColorHSL
+import com.smarttoolfactory.colorpicker.model.ColorHSV
+import com.smarttoolfactory.colorpicker.model.ColorModel
+import com.smarttoolfactory.colorpicker.model.ColorRGB
+import com.smarttoolfactory.colorpicker.model.CompositeColor
 import com.smarttoolfactory.extendedcolors.util.HSLUtil
 import com.smarttoolfactory.extendedcolors.util.HSVUtil
 import com.smarttoolfactory.extendedcolors.util.RGBUtil
@@ -85,6 +89,7 @@ fun convertColor(colorModel: ColorModel, compositeColor: CompositeColor): Compos
                 is ColorHSL -> {
                     compositeColor
                 }
+
                 is ColorHSV -> {
                     val hue = compositeColor.hue
                     val saturation = compositeColor.saturation
@@ -98,6 +103,7 @@ fun convertColor(colorModel: ColorModel, compositeColor: CompositeColor): Compos
                         alpha
                     )
                 }
+
                 is ColorRGB -> {
                     val red = compositeColor.red
                     val green = compositeColor.green
@@ -116,6 +122,7 @@ fun convertColor(colorModel: ColorModel, compositeColor: CompositeColor): Compos
                 else -> ColorHSL.Unspecified
             }
         }
+
         ColorModel.HSV -> {
 
             when (compositeColor) {
@@ -137,9 +144,11 @@ fun convertColor(colorModel: ColorModel, compositeColor: CompositeColor): Compos
 
 
                 }
+
                 is ColorHSV -> {
                     compositeColor
                 }
+
                 is ColorRGB -> {
                     val red = compositeColor.red
                     val green = compositeColor.green
@@ -180,6 +189,7 @@ fun convertColor(colorModel: ColorModel, compositeColor: CompositeColor): Compos
                         alpha
                     )
                 }
+
                 is ColorHSV -> {
 
                     val hue = compositeColor.hue
@@ -196,6 +206,7 @@ fun convertColor(colorModel: ColorModel, compositeColor: CompositeColor): Compos
                     )
 
                 }
+
                 is ColorRGB -> {
                     compositeColor
                 }

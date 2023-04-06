@@ -1,8 +1,18 @@
 package com.smarttoolfactory.colorpicker.picker
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.TextFieldDefaults
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,7 +25,6 @@ import com.smarttoolfactory.colorpicker.selector.SelectorRingHue
 import com.smarttoolfactory.colorpicker.slider.CompositeSliderPanel
 import com.smarttoolfactory.colorpicker.ui.Grey400
 import com.smarttoolfactory.colorpicker.ui.Grey600
-import com.smarttoolfactory.extendedcolors.util.ColorUtil.colorToHexAlpha
 import com.smarttoolfactory.colorpicker.widget.ColorDisplayRoundedRect
 import com.smarttoolfactory.colorpicker.widget.ColorModelChangeTabRow
 import com.smarttoolfactory.colorpicker.widget.HexTextField

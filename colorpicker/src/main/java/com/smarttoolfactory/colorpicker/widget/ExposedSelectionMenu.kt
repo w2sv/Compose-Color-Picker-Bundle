@@ -7,10 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.smarttoolfactory.colorpicker.ui.Green400
 import com.smarttoolfactory.colorpicker.ui.Grey400
-import com.smarttoolfactory.colorpicker.ui.Orange400
-import com.smarttoolfactory.colorpicker.ui.Red400
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -32,7 +29,7 @@ fun ExposedSelectionMenu(
         trailingIconColor = Grey400,
         focusedTrailingIconColor = Grey400,
         textColor = Grey400,
-        ),
+    ),
     options: List<String>,
     onSelected: (Int) -> Unit
 ) {

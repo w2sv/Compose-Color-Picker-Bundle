@@ -1,12 +1,29 @@
 package com.smarttoolfactory.colorpicker.selector.gradient
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.FloatingActionButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -19,11 +36,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.colorpicker.model.GradientColorState
-import com.smarttoolfactory.colorpicker.ui.*
-import com.smarttoolfactory.extendedcolors.util.fractionToIntPercent
+import com.smarttoolfactory.colorpicker.ui.Blue400
+import com.smarttoolfactory.colorpicker.ui.GradientOffset
+import com.smarttoolfactory.colorpicker.ui.Green400
+import com.smarttoolfactory.colorpicker.ui.Orange400
+import com.smarttoolfactory.colorpicker.ui.Red400
 import com.smarttoolfactory.colorpicker.widget.ExpandableColumnWithTitle
 import com.smarttoolfactory.colorpicker.widget.ExposedSelectionMenu
 import com.smarttoolfactory.colorpicker.widget.drawChecker
+import com.smarttoolfactory.extendedcolors.util.fractionToIntPercent
 import com.smarttoolfactory.slider.ColorfulSlider
 import com.smarttoolfactory.slider.MaterialSliderDefaults
 import com.smarttoolfactory.slider.SliderBrushColor
@@ -65,6 +86,7 @@ fun GradientSelector(
                 ) { offset: GradientOffset ->
                     gradientColorState.gradientOffset = offset
                 }
+
             GradientType.Radial ->
                 RadialGradientSelection(
                     gradientColorState
@@ -72,6 +94,7 @@ fun GradientSelector(
                     gradientColorState.centerFriction = centerFriction
                     gradientColorState.radiusFriction = radiusFriction
                 }
+
             GradientType.Sweep ->
                 SweepGradientSelection(
                     gradientColorState
@@ -215,6 +238,7 @@ fun BrushDisplay(
                     )
                 }
             }
+
             GradientType.Radial -> {
                 Brush.radialGradient(
                     colorStops = colorStops.toTypedArray(),

@@ -33,8 +33,8 @@ fun saturationHSVGradient(
 fun valueGradient(
     hue: Float,
     alpha: Float = 1f,
-    start:Offset = Offset.Zero,
-    end:Offset = Offset(0f, Float.POSITIVE_INFINITY)
+    start: Offset = Offset.Zero,
+    end: Offset = Offset(0f, Float.POSITIVE_INFINITY)
 ): Brush {
     return Brush.linearGradient(
         colors = listOf(
@@ -69,8 +69,8 @@ fun saturationHSLGradient(
 fun lightnessGradient(
     hue: Float,
     alpha: Float = 1f,
-    start:Offset = Offset.Zero,
-    end:Offset = Offset(0f, Float.POSITIVE_INFINITY)
+    start: Offset = Offset.Zero,
+    end: Offset = Offset(0f, Float.POSITIVE_INFINITY)
 ): Brush {
     return Brush.linearGradient(
         colors = listOf(

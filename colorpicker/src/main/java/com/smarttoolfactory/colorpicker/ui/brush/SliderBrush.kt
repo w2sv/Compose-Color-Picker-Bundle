@@ -232,8 +232,8 @@ fun sliderAlphaRGBGradient(
 ): Brush {
     return Brush.linearGradient(
         colors = listOf(
-            Color(red,green, blue,0f),
-            Color(red,green, blue,1f)
+            Color(red, green, blue, 0f),
+            Color(red, green, blue, 1f)
         ),
         start = start,
         end = end

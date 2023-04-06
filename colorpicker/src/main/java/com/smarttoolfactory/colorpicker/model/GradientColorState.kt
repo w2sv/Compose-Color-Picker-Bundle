@@ -1,6 +1,11 @@
 package com.smarttoolfactory.colorpicker.model
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
@@ -69,6 +74,7 @@ class GradientColorState internal constructor(initialColor: Color, size: Size) {
                     end = gradientOffset.end,
                     tileMode = tileMode
                 )
+
                 GradientType.Radial -> Brush.radialGradient(
                     colorStops = colorStops,
                     center = Offset(
@@ -79,6 +85,7 @@ class GradientColorState internal constructor(initialColor: Color, size: Size) {
                         .coerceAtLeast(0.01f),
                     tileMode = tileMode
                 )
+
                 GradientType.Sweep -> Brush.sweepGradient(
                     colorStops = colorStops,
                     center = Offset(
