@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Compose Color Picker"
-//include ':app'
+include ':app'
 include ':colorpicker'

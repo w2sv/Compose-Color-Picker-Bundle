@@ -44,10 +44,10 @@ dependencies {
     implementation 'com.github.SmartToolFactory:Compose-Color-Detector:1.0.0'
     implementation 'com.github.SmartToolFactory:Compose-Colorful-Sliders:1.1.0'
 
-    implementation "androidx.compose.ui:ui:1.4.1"
-    implementation "androidx.compose.ui:ui-tooling:1.4.1"
-    implementation "androidx.compose.material:material:1.4.1"
-    implementation "androidx.compose.runtime:runtime:1.4.1"
-    implementation "androidx.compose.material:material-icons-extended:1.4.1"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.compose.material3:material3:1.0.1"
 }
