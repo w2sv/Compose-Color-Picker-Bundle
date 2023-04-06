@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -16,11 +17,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kotlin {
+        jvmToolchain(17)
     }
     buildFeatures {
         compose true
@@ -35,14 +36,28 @@ android {
     }
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.smarttoolfactory'
+                artifactId = 'colorpicker'
+                version = '0.0.1'
+            }
+        }
+    }
+}
+
 dependencies {
     implementation 'androidx.core:core-ktx:1.10.0'
 
-    implementation 'com.github.SmartToolFactory:Compose-Extended-Gestures:2.1.0'
-    implementation 'com.github.SmartToolFactory:Compose-Extended-Colors:1.0.0-alpha07'
-    implementation 'com.github.SmartToolFactory:Compose-Screenshot:1.0.3'
-    implementation 'com.github.SmartToolFactory:Compose-Color-Detector:1.0.0'
-    implementation 'com.github.SmartToolFactory:Compose-Colorful-Sliders:1.1.0'
+    implementation 'com.github.w2sv:Compose-Extended-Gestures:master-SNAPSHOT'
+    implementation 'com.github.w2sv:Compose-Extended-Colors:1.0.0-rc1'
+    implementation 'com.github.w2sv:Compose-Colorful-Sliders:1.0.0-rc1'
+
+//    implementation 'com.github.SmartToolFactory:Compose-Color-Detector:1.0.0'
 
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
