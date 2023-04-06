@@ -15,26 +15,6 @@ import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.colorpicker.model.ColorModel
 import com.smarttoolfactory.extendedcolors.util.*
 
-//@Composable
-//fun ColorDisplayExposedSelectionMenu() {
-//    var index by remember { mutableStateOf(0) }
-//
-//    Row(
-//        verticalAlignment = Alignment.CenterVertically,
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(2.dp)
-//    ) {
-//        ExposedSelectionMenu(
-//            index = index,
-//            options = ColorModel.values().map { it.name },
-//            onSelected = {
-//                index = it
-//            }
-//        )
-//    }
-//}
-
 /**
  * Selection menu that displays Color's components in RGB, HSL, or HSL
  */
@@ -82,94 +62,112 @@ fun ColorDisplayExposedSelectionMenu(
             }
         )
 
-        Row(
-            modifier = Modifier
-                .weight(1f),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            when (colorModel) {
-                ColorModel.RGB -> {
-                    ColorValueColumn(
-                        label = "R",
-                        value = color.red.fractionToRGBString(),
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "G",
-                        value = color.green.fractionToRGBString(),
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "B",
-                        value = color.blue.fractionToRGBString(),
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "A",
-                        value = "${color.alpha.fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                }
+        ColorComponentsDisplay(
+            color = color,
+            colorModel = colorModel,
+            textColor = textColor,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
 
-                ColorModel.HSV -> {
-                    val hsvArray = ColorUtil.colorToHSV(color)
-                    ColorValueColumn(
-                        label = "H",
-                        value = "${hsvArray[0].round()}°",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "S",
-                        value = "${hsvArray[1].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "V",
-                        value = "${hsvArray[2].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "A",
-                        value = "${color.alpha.fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                }
+@Composable
+fun ColorComponentsDisplay(
+    color: Color,
+    colorModel: ColorModel,
+    textColor: Color,
+    modifier: Modifier = Modifier,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = horizontalArrangement,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(2.dp)
+    ) {
+        when (colorModel) {
+            ColorModel.RGB -> {
+                ColorValueColumn(
+                    label = "R",
+                    value = color.red.fractionToRGBString(),
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "G",
+                    value = color.green.fractionToRGBString(),
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "B",
+                    value = color.blue.fractionToRGBString(),
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "A",
+                    value = "${color.alpha.fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+            }
 
-                ColorModel.HSL -> {
-                    val hslArray = ColorUtil.colorToHSL(color)
-                    ColorValueColumn(
-                        label = "H",
-                        value = "${hslArray[0].round()}°",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "S",
-                        value = "${hslArray[1].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "L",
-                        value = "${hslArray[2].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                    ColorValueColumn(
-                        label = "A",
-                        value = "${color.alpha.fractionToPercent()}%",
-                        modifier = Modifier.weight(1f),
-                        textColor = textColor
-                    )
-                }
+            ColorModel.HSV -> {
+                val hsvArray = ColorUtil.colorToHSV(color)
+                ColorValueColumn(
+                    label = "H",
+                    value = "${hsvArray[0].round()}°",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "S",
+                    value = "${hsvArray[1].fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "V",
+                    value = "${hsvArray[2].fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "A",
+                    value = "${color.alpha.fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+            }
+
+            ColorModel.HSL -> {
+                val hslArray = ColorUtil.colorToHSL(color)
+                ColorValueColumn(
+                    label = "H",
+                    value = "${hslArray[0].round()}°",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "S",
+                    value = "${hslArray[1].fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "L",
+                    value = "${hslArray[2].fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
+                ColorValueColumn(
+                    label = "A",
+                    value = "${color.alpha.fractionToPercent()}%",
+                    modifier = Modifier.weight(1f),
+                    textColor = textColor
+                )
             }
         }
     }

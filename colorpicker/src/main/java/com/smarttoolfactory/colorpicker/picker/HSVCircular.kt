@@ -13,14 +13,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.smarttoolfactory.colorpicker.model.ColorModel
-import com.smarttoolfactory.colorpicker.selector.SelectorCircleHueSaturationHSV
+import com.smarttoolfactory.colorpicker.selector.CircularHSVSelector
 import com.smarttoolfactory.colorpicker.slider.SliderCircleColorDisplayValueHSV
 import com.smarttoolfactory.colorpicker.widget.ColorDisplayExposedSelectionMenu
 import com.smarttoolfactory.colorpicker.widget.DropdownMenuItemColors
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
 
 @Composable
-fun ColorPickerCircleValueHSV(
+fun HSVColorPickerCircularWithSlidersAndMenu(
     initialColor: Color,
     modifier: Modifier = Modifier,
     selectionRadius: Dp = 8.dp,
@@ -45,7 +45,7 @@ fun ColorPickerCircleValueHSV(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SelectorCircleHueSaturationHSV(
+        CircularHSVSelector(
             modifier = Modifier.padding(8.dp),
             hue = hue,
             saturation = saturation,
@@ -77,5 +77,54 @@ fun ColorPickerCircleValueHSV(
                 dropdownMenuItemColors = dropdownMenuItemColors
             )
         }
+    }
+}
+
+@Composable
+fun HSVColorPickerCircularWithSliders(
+    initialColor: Color,
+    modifier: Modifier = Modifier,
+    selectionRadius: Dp = 8.dp,
+    onColorChange: (Color, String) -> Unit
+) {
+    val hsvArray = ColorUtil.colorToHSV(initialColor)
+
+    var hue by remember { mutableStateOf(hsvArray[0]) }
+    var saturation by remember { mutableStateOf(hsvArray[1]) }
+    var value by remember { mutableStateOf(hsvArray[2]) }
+    var alpha by remember { mutableStateOf(initialColor.alpha) }
+
+    val currentColor =
+        Color.hsv(hue = hue, saturation = saturation, value = value, alpha = alpha)
+
+    onColorChange(currentColor, ColorUtil.colorToHexAlpha(currentColor))
+
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularHSVSelector(
+            modifier = Modifier.padding(8.dp),
+            hue = hue,
+            saturation = saturation,
+            selectionRadius = selectionRadius
+        ) { h, s ->
+            hue = h
+            saturation = s
+        }
+
+        SliderCircleColorDisplayValueHSV(
+            modifier = Modifier.padding(8.dp),
+            hue = hue,
+            saturation = saturation,
+            value = value,
+            alpha = alpha,
+            onValueChange = {
+                value = it
+            },
+            onAlphaChange = {
+                alpha = it
+            }
+        )
     }
 }

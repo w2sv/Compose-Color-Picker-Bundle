@@ -32,7 +32,7 @@ import com.smarttoolfactory.gesture.detectMotionEvents
  *  when position of touch in this selector has changed.
  */
 @Composable
-fun SelectorCircleHueSaturationHSV(
+fun CircularHSVSelector(
     modifier: Modifier = Modifier,
     hue: Float,
     saturation: Float,
