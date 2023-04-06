@@ -61,7 +61,6 @@ fun GradientSelector(
         when (gradientColorState.gradientType) {
             GradientType.Linear ->
                 LinearGradientSelection(
-                    gradientColorState,
                     gradientColorState.size
                 ) { offset: GradientOffset ->
                     gradientColorState.gradientOffset = offset

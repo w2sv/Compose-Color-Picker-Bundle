@@ -114,20 +114,20 @@ fun SelectorDiamondSaturationLightnessHSL(
     }
 }
 
-@Composable
-fun SelectorDiamondSaturationValueHSV(
-    modifier: Modifier = Modifier,
-    @FloatRange(from = 0.1, to = 360.0) hue: Float,
-    @FloatRange(from = 0.0, to = 1.0) saturation: Float = 0.5f,
-    @FloatRange(from = 0.0, to = 1.0) value: Float = 0.5f,
-    selectionRadius: Dp = Dp.Unspecified,
-    onChange: (Float, Float) -> Unit
-) {
-
-    TODO(
-        "Need to rotate from center and linear interpolate into length range from sqrt(length)" +
-                "to display HSV colors in a diamond"
-    )
+//@Composable
+//fun SelectorDiamondSaturationValueHSV(
+//    modifier: Modifier = Modifier,
+//    @FloatRange(from = 0.1, to = 360.0) hue: Float,
+//    @FloatRange(from = 0.0, to = 1.0) saturation: Float = 0.5f,
+//    @FloatRange(from = 0.0, to = 1.0) value: Float = 0.5f,
+//    selectionRadius: Dp = Dp.Unspecified,
+//    onChange: (Float, Float) -> Unit
+//) {
+//
+//    TODO(
+//        "Need to rotate from center and linear interpolate into length range from sqrt(length)" +
+//                "to display HSV colors in a diamond"
+//    )
 //    BoxWithConstraints(
 //        modifier = modifier,
 //        contentAlignment = Alignment.Center
@@ -180,7 +180,7 @@ fun SelectorDiamondSaturationValueHSV(
 //            colorMode = ColorMode.HSV
 //        )
 //    }
-}
+//}
 
 @Composable
 private fun SelectorDiamond(
@@ -216,7 +216,7 @@ private fun SelectorDiamond(
 
         // Convert from user values to offset
         currentPosition =
-            setSelectorPositionFromColorParams(saturation, property, length, colorModel)
+            setSelectorPositionFromColorParams(saturation, property, length)
 
         /**
          * Check if first pointer that touched this compsable inside bounds of diamond
@@ -335,8 +335,7 @@ private fun SelectorDiamondImpl(
 fun setSelectorPositionFromColorParams(
     saturation: Float,
     lightness: Float,
-    length: Float,
-    colorModel: ColorModel
+    length: Float
 ): Offset {
     // Get possible horizontal range for the current position of lightness on diamond
     val range = getRangeForPositionInDiamond(length, lightness * length)
@@ -393,11 +392,9 @@ fun diamondPath(size: Size) = Path().apply {
     lineTo(0f, size.height / 2f)
 }
 
-val diamondShape = GenericShape { size: Size, _: LayoutDirection ->
-    moveTo(size.width / 2f, 0f)
-    lineTo(size.width, size.height / 2f)
-    lineTo(size.width / 2f, size.height)
-    lineTo(0f, size.height / 2f)
-}
-
-
+//val diamondShape = GenericShape { size: Size, _: LayoutDirection ->
+//    moveTo(size.width / 2f, 0f)
+//    lineTo(size.width, size.height / 2f)
+//    lineTo(size.width / 2f, size.height)
+//    lineTo(0f, size.height / 2f)
+//}

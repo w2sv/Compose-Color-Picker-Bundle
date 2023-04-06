@@ -30,6 +30,7 @@ import com.smarttoolfactory.extendedcolors.parser.rememberColorParser
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
 import com.smarttoolfactory.extendedcolors.util.HexUtil
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
@@ -61,11 +62,13 @@ fun HexTextFieldWithClipboard(
     val currentRegex = if (useAlpha) hexWithAlphaRegex else hexRegex
     val isHexValid = currentRegex.matches(hexText.value)
 
-    val color = derivedStateOf {
-        try {
-            HexUtil.hexToColor(hexText.value)
-        } catch (e: Exception) {
-            Color.Unspecified
+    val color = remember {
+        derivedStateOf {
+            try {
+                HexUtil.hexToColor(hexText.value)
+            } catch (e: Exception) {
+                Color.Unspecified
+            }
         }
     }
 
@@ -164,6 +167,7 @@ fun HexTextFieldWithClipboard(
  * @param onColorChange when user type valid 6 or 8 char hex returns a [Color] associated
  * with the hex string.
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun HexTextFieldWithLabelClipboard(
     modifier: Modifier = Modifier,
@@ -181,11 +185,13 @@ fun HexTextFieldWithLabelClipboard(
     val currentRegex = hexRegex
     val isHexValid = currentRegex.matches(hexText.value)
 
-    val color = derivedStateOf {
-        try {
-            HexUtil.hexToColor(hexText.value)
-        } catch (e: Exception) {
-            Color.Unspecified
+    val color = remember {
+        derivedStateOf {
+            try {
+                HexUtil.hexToColor(hexText.value)
+            } catch (e: Exception) {
+                Color.Unspecified
+            }
         }
     }
 
@@ -283,7 +289,7 @@ fun HexTextFieldWithLabelClipboard(
                     clipboardManager.setText(AnnotatedString(hexString))
                 }) {
                 Icon(
-                    tint = if (isHexValid) textColor else Color.LightGray,
+                    tint = textColor,
                     painter = painterResource(id = R.drawable.ic_baseline_content_copy_24),
                     contentDescription = "clipboard"
                 )

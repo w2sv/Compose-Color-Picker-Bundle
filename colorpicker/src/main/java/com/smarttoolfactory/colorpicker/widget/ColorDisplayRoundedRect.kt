@@ -60,7 +60,7 @@ fun ColorDisplayRoundedRect(
     initialBrush: Brush,
     currentBrush: Brush
 ) {
-    Row() {
+    Row(modifier = modifier) {
         Box(
             modifier = Modifier
                 .size(boxSize)

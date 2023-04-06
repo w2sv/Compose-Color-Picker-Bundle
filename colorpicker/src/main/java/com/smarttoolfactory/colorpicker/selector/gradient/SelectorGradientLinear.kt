@@ -1,10 +1,18 @@
 package com.smarttoolfactory.colorpicker.selector.gradient
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -12,8 +20,11 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.smarttoolfactory.colorpicker.model.GradientColorState
-import com.smarttoolfactory.colorpicker.ui.*
+import com.smarttoolfactory.colorpicker.ui.GradientAngle
+import com.smarttoolfactory.colorpicker.ui.GradientOffset
+import com.smarttoolfactory.colorpicker.ui.Grey400
+import com.smarttoolfactory.colorpicker.ui.Pink400
+import com.smarttoolfactory.colorpicker.ui.Red400
 import com.smarttoolfactory.colorpicker.widget.ExpandableColumnWithTitle
 import com.smarttoolfactory.colorpicker.widget.ExposedSelectionMenu
 import com.smarttoolfactory.slider.ui.ActiveTrackColor
@@ -23,12 +34,10 @@ import kotlin.math.roundToInt
 
 @Composable
 internal fun LinearGradientSelection(
-    gradientColorState: GradientColorState,
     size: Size,
     onGradientOffsetChange: (GradientOffset) -> Unit
 ) {
     GradientOffsetSelection(
-        gradientColorState,
         size = size,
         onGradientOffsetChange = onGradientOffsetChange
     )
@@ -36,7 +45,6 @@ internal fun LinearGradientSelection(
 
 @Composable
 private fun GradientOffsetSelection(
-    gradientColorState: GradientColorState,
     size: Size,
     onGradientOffsetChange: (GradientOffset) -> Unit
 ) {
@@ -45,19 +53,18 @@ private fun GradientOffsetSelection(
         color = Pink400,
         initialExpandState = false
     ) {
-        GradientOffsetTypeSelection(gradientColorState, size, onGradientOffsetChange)
+        GradientOffsetTypeSelection(size, onGradientOffsetChange)
     }
 }
 
 @Composable
 private fun GradientOffsetTypeSelection(
-    gradientColorState: GradientColorState,
     size: Size,
     onGradientOffsetChange: (GradientOffset) -> Unit,
 ) {
     val gradientOffsetOptions = if (size != Size.Zero) {
         listOf("Angle", "Position")
-    }else listOf("Angle")
+    } else listOf("Angle")
 
     var gradientOffsetOption by remember { mutableStateOf(0) }
 
@@ -74,13 +81,12 @@ private fun GradientOffsetTypeSelection(
         when (gradientOffsetOption) {
             0 -> {
                 GradientOffsetAngleSelectionSlider(
-                    gradientColorState=gradientColorState,
                     onGradientOffsetChange = onGradientOffsetChange
                 )
             }
+
             else -> {
                 GradientOffsetPositionSelection(
-                    gradientColorState=gradientColorState,
                     size = size,
                     onGradientOffsetChange = onGradientOffsetChange
                 )
@@ -91,7 +97,6 @@ private fun GradientOffsetTypeSelection(
 
 @Composable
 private fun GradientOffsetPositionSelection(
-    gradientColorState:GradientColorState,
     size: Size,
     onGradientOffsetChange: (GradientOffset) -> Unit,
 ) {
@@ -147,39 +152,38 @@ private fun GradientOffsetPositionSelection(
     }
 }
 
-@Composable
-private fun GradientOffsetAngleSelection(
-    onGradientOffsetChange: (GradientOffset) -> Unit
-) {
-    var gradientOffsetSelection by remember { mutableStateOf(0) }
-
-    ExposedSelectionMenu(
-        modifier = Modifier.width(250.dp),
-        index = gradientOffsetSelection,
-        title = "Angle",
-        options = gradientAngleOptions,
-        onSelected = {
-            gradientOffsetSelection = it
-
-            val gradientOffset = when (gradientOffsetSelection) {
-                0 -> GradientOffset(GradientAngle.CW0)
-                1 -> GradientOffset(GradientAngle.CW45)
-                2 -> GradientOffset(GradientAngle.CW90)
-                3 -> GradientOffset(GradientAngle.CW135)
-                4 -> GradientOffset(GradientAngle.CW180)
-                5 -> GradientOffset(GradientAngle.CW225)
-                6 -> GradientOffset(GradientAngle.CW270)
-                else -> GradientOffset(GradientAngle.CW315)
-            }
-
-            onGradientOffsetChange(gradientOffset)
-        }
-    )
-}
+//@Composable
+//private fun GradientOffsetAngleSelection(
+//    onGradientOffsetChange: (GradientOffset) -> Unit
+//) {
+//    var gradientOffsetSelection by remember { mutableStateOf(0) }
+//
+//    ExposedSelectionMenu(
+//        modifier = Modifier.width(250.dp),
+//        index = gradientOffsetSelection,
+//        title = "Angle",
+//        options = gradientAngleOptions,
+//        onSelected = {
+//            gradientOffsetSelection = it
+//
+//            val gradientOffset = when (gradientOffsetSelection) {
+//                0 -> GradientOffset(GradientAngle.CW0)
+//                1 -> GradientOffset(GradientAngle.CW45)
+//                2 -> GradientOffset(GradientAngle.CW90)
+//                3 -> GradientOffset(GradientAngle.CW135)
+//                4 -> GradientOffset(GradientAngle.CW180)
+//                5 -> GradientOffset(GradientAngle.CW225)
+//                6 -> GradientOffset(GradientAngle.CW270)
+//                else -> GradientOffset(GradientAngle.CW315)
+//            }
+//
+//            onGradientOffsetChange(gradientOffset)
+//        }
+//    )
+//}
 
 @Composable
 private fun GradientOffsetAngleSelectionSlider(
-    gradientColorState:GradientColorState,
     onGradientOffsetChange: (GradientOffset) -> Unit
 ) {
 
@@ -207,18 +211,22 @@ private fun GradientOffsetAngleSelectionSlider(
                         angleText = "0°"
                         GradientOffset(GradientAngle.CW0)
                     }
+
                     1 -> {
                         angleText = "45°"
                         GradientOffset(GradientAngle.CW45)
                     }
+
                     2 -> {
                         angleText = "90°"
                         GradientOffset(GradientAngle.CW90)
                     }
+
                     3 -> {
                         angleText = "135°"
                         GradientOffset(GradientAngle.CW135)
                     }
+
                     4 -> {
                         angleText = "180°"
                         GradientOffset(GradientAngle.CW180)
@@ -228,10 +236,12 @@ private fun GradientOffsetAngleSelectionSlider(
                         angleText = "225°"
                         GradientOffset(GradientAngle.CW225)
                     }
+
                     6 -> {
                         angleText = "270°"
                         GradientOffset(GradientAngle.CW270)
                     }
+
                     else -> {
                         angleText = "315°"
                         GradientOffset(GradientAngle.CW315)
@@ -262,13 +272,13 @@ private fun GradientOffsetAngleSelectionSlider(
 
 }
 
-private val gradientAngleOptions = listOf(
-    "0°",
-    "45°",
-    "90°",
-    "135°",
-    "180°",
-    "225°",
-    "270°",
-    "315°",
-)
+//private val gradientAngleOptions = listOf(
+//    "0°",
+//    "45°",
+//    "90°",
+//    "135°",
+//    "180°",
+//    "225°",
+//    "270°",
+//    "315°",
+//)
