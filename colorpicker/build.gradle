@@ -49,5 +49,5 @@ dependencies {
     implementation "androidx.compose.material:material:1.4.1"
     implementation "androidx.compose.runtime:runtime:1.4.1"
     implementation "androidx.compose.material:material-icons-extended:1.4.1"
-    implementation "androidx.compose.material3:material3:1.0.0-beta02"
+    implementation "androidx.compose.material3:material3:1.0.1"
 }

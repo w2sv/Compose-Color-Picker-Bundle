@@ -17,8 +17,7 @@ import com.smarttoolfactory.colorpicker.model.CompositeColor
 import com.smarttoolfactory.extendedcolors.util.*
 
 @Composable
-fun ColorDisplayExposedSelectionMenu(compositeColor: CompositeColor, colorModel: ColorModel) {
-
+fun ColorDisplayExposedSelectionMenu() {
     val options = listOf("HEX", "HSV", "HSL")
     var index by remember { mutableStateOf(0) }
     Row(

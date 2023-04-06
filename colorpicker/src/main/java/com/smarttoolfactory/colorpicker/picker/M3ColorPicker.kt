@@ -45,11 +45,13 @@ import com.smarttoolfactory.extendedcolors.parser.rememberColorParser
 import com.smarttoolfactory.extendedcolors.util.getColorTonesList
 import com.smarttoolfactory.extendedcolors.util.material3ToneRange
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 
 
+@ExperimentalCoroutinesApi
 @Composable
 fun M3ColorPicker(onColorChange: (Color) -> Unit) {
     Column(
