@@ -13,13 +13,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.colorpicker.model.ColorModel
-import com.smarttoolfactory.colorpicker.model.CompositeColor
 import com.smarttoolfactory.extendedcolors.util.*
 
 @Composable
 fun ColorDisplayExposedSelectionMenu() {
-    val options = listOf("HEX", "HSV", "HSL")
     var index by remember { mutableStateOf(0) }
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -28,7 +27,7 @@ fun ColorDisplayExposedSelectionMenu() {
     ) {
         ExposedSelectionMenu(
             index = index,
-            options = options,
+            options = ColorModel.values().map { it.name },
             onSelected = {
                 index = it
             }
@@ -43,26 +42,20 @@ fun ColorDisplayExposedSelectionMenu() {
 @Composable
 fun ColorDisplayExposedSelectionMenu(
     color: Color,
-    colorModel: ColorModel,
-    onColorModelChange: (ColorModel) -> Unit
+    initialColorModel: ColorModel,
+    backgroundColor: Color,
+    textColor: Color
 ) {
-
-    val options = listOf("HEX", "HSV", "HSL")
+    var colorModel by remember { mutableStateOf(initialColorModel) }
 
     var selectedIndex by remember {
-        mutableStateOf(
-            when (colorModel) {
-                ColorModel.RGB -> 0
-                ColorModel.HSV -> 1
-                ColorModel.HSL -> 2
-            }
-        )
+        mutableStateOf(colorModel.ordinal)
     }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .background(Color.White)
+            .background(backgroundColor)
             .fillMaxWidth()
             .padding(2.dp)
     ) {
@@ -80,10 +73,10 @@ fun ColorDisplayExposedSelectionMenu(
                 focusedTrailingIconColor = Color.Black,
                 textColor = Color.Black,
             ),
-            options = options,
+            options = ColorModel.values().map { it.name },
             onSelected = {
                 selectedIndex = it
-                onColorModelChange(ColorModel.values()[selectedIndex])
+                colorModel = ColorModel.values()[it]
             }
         )
 
@@ -92,65 +85,87 @@ fun ColorDisplayExposedSelectionMenu(
                 .weight(1f),
             horizontalArrangement = Arrangement.Start
         ) {
-
             when (colorModel) {
                 ColorModel.RGB -> {
-                    ColorText(
-                        title = "R",
+                    ColorValueColumn(
+                        label = "R",
                         value = color.red.fractionToRGBString(),
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "G", value = color.green.fractionToRGBString(),
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "G",
+                        value = color.green.fractionToRGBString(),
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "B", value = color.blue.fractionToRGBString(),
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "B",
+                        value = color.blue.fractionToRGBString(),
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "A", value = "${color.alpha.fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "A",
+                        value = "${color.alpha.fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
                 }
 
                 ColorModel.HSV -> {
                     val hsvArray = ColorUtil.colorToHSV(color)
-                    ColorText(
-                        title = "H", value = "${hsvArray[0].round()}°",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "H",
+                        value = "${hsvArray[0].round()}°",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "S", value = "${hsvArray[1].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "S",
+                        value = "${hsvArray[1].fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "V", value = "${hsvArray[2].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "V",
+                        value = "${hsvArray[2].fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "A", value = "${color.alpha.fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "A",
+                        value = "${color.alpha.fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
                 }
 
                 ColorModel.HSL -> {
                     val hslArray = ColorUtil.colorToHSL(color)
-                    ColorText(
-                        title = "H", value = "${hslArray[0].round()}°",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "H",
+                        value = "${hslArray[0].round()}°",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "S", value = "${hslArray[1].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "S",
+                        value = "${hslArray[1].fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "L", value = "${hslArray[2].fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "L",
+                        value = "${hslArray[2].fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
-                    ColorText(
-                        title = "A", value = "${color.alpha.fractionToPercent()}%",
-                        modifier = Modifier.weight(1f)
+                    ColorValueColumn(
+                        label = "A",
+                        value = "${color.alpha.fractionToPercent()}%",
+                        modifier = Modifier.weight(1f),
+                        textColor = textColor
                     )
                 }
             }
@@ -159,18 +174,23 @@ fun ColorDisplayExposedSelectionMenu(
 }
 
 @Composable
-private fun ColorText(modifier: Modifier = Modifier, title: String, value: String) {
+private fun ColorValueColumn(
+    modifier: Modifier = Modifier,
+    label: String,
+    value: String,
+    textColor: Color
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = title.substring(0, 1),
+            text = label,
+            color = textColor,
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp
-
         )
         Spacer(modifier = Modifier.height(4.dp))
-        Text(text = value, fontSize = 14.sp)
+        Text(text = value, color = textColor, fontSize = 14.sp)
     }
 }

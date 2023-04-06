@@ -24,12 +24,13 @@ import com.smarttoolfactory.extendedcolors.util.ColorUtil
  */
 @Composable
 fun ColorPickerCircleValueHSV(
+    initialColor: Color,
     modifier: Modifier = Modifier,
     selectionRadius: Dp = 8.dp,
-    initialColor: Color,
+    menuBackgroundColor: Color = Color.Transparent,
+    textColor: Color = Color.Black,
     onColorChange: (Color, String) -> Unit
 ) {
-
     val hsvArray = ColorUtil.colorToHSV(initialColor)
 
     var hue by remember { mutableStateOf(hsvArray[0]) }
@@ -39,8 +40,6 @@ fun ColorPickerCircleValueHSV(
 
     val currentColor =
         Color.hsv(hue = hue, saturation = saturation, value = value, alpha = alpha)
-
-    var colorModel by remember { mutableStateOf(ColorModel.HSV) }
 
     onColorChange(currentColor, ColorUtil.colorToHexAlpha(currentColor))
 
@@ -56,7 +55,6 @@ fun ColorPickerCircleValueHSV(
         ) { h, s ->
             hue = h
             saturation = s
-
         }
 
         Column(modifier = Modifier.padding(8.dp)) {
@@ -75,10 +73,9 @@ fun ColorPickerCircleValueHSV(
 
             ColorDisplayExposedSelectionMenu(
                 color = currentColor,
-                colorModel = colorModel,
-                onColorModelChange = {
-                    colorModel = it
-                }
+                initialColorModel = ColorModel.HSV,
+                backgroundColor = menuBackgroundColor,
+                textColor = textColor
             )
         }
     }
