@@ -27,9 +27,6 @@ fun ColorPickerRectHueSaturationHSL(
     initialColor: Color,
     onColorChange: (Color, String) -> Unit
 ) {
-
-    var colorModel by remember { mutableStateOf(ColorModel.HSL) }
-
     val hslArray = ColorUtil.colorToHSL(initialColor)
 
     var hue by remember { mutableStateOf(hslArray[0]) }
@@ -75,10 +72,9 @@ fun ColorPickerRectHueSaturationHSL(
 
             ColorDisplayExposedSelectionMenu(
                 color = currentColor,
-                colorModel = colorModel,
-                onColorModelChange = {
-                    colorModel = it
-                }
+                initialColorModel = ColorModel.HSL,
+                backgroundColor = Color.Transparent,
+                textColor = Color.Black
             )
         }
     }

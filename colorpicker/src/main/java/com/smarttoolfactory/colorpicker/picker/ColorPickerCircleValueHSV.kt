@@ -19,9 +19,6 @@ import com.smarttoolfactory.colorpicker.widget.ColorDisplayExposedSelectionMenu
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
 
 
-/**
- *
- */
 @Composable
 fun ColorPickerCircleValueHSV(
     initialColor: Color,

@@ -27,7 +27,6 @@ fun ColorPickerRectHueSaturationHSV(
     initialColor: Color,
     onColorChange: (Color, String) -> Unit
 ) {
-
     val hsvArray = ColorUtil.colorToHSV(initialColor)
 
     var hue by remember { mutableStateOf(hsvArray[0]) }
@@ -37,9 +36,7 @@ fun ColorPickerRectHueSaturationHSV(
 
     val currentColor =
         Color.hsv(hue = hue, saturation = saturation, value = value, alpha = alpha)
-
-    var colorModel by remember { mutableStateOf(ColorModel.HSV) }
-
+    
     onColorChange(currentColor, ColorUtil.colorToHexAlpha(currentColor))
 
     Column(
@@ -75,10 +72,9 @@ fun ColorPickerRectHueSaturationHSV(
 
             ColorDisplayExposedSelectionMenu(
                 color = currentColor,
-                colorModel = colorModel,
-                onColorModelChange = {
-                    colorModel = it
-                }
+                initialColorModel = ColorModel.HSV,
+                backgroundColor = Color.Transparent,
+                textColor = Color.Black
             )
         }
     }

@@ -27,16 +27,12 @@ fun ColorPickerRectHueLightnessHSL(
     initialColor: Color,
     onColorChange: (Color, String) -> Unit
 ) {
-
-    var colorModel by remember { mutableStateOf(ColorModel.HSL) }
-
     val hslArray = ColorUtil.colorToHSL(initialColor)
 
     var hue by remember { mutableStateOf(hslArray[0]) }
     var saturation by remember { mutableStateOf(hslArray[1]) }
     var lightness by remember { mutableStateOf(hslArray[2]) }
     var alpha by remember { mutableStateOf(initialColor.alpha) }
-
 
     val currentColor =
         Color.hsl(hue = hue, saturation = saturation, lightness = lightness, alpha = alpha)
@@ -76,10 +72,9 @@ fun ColorPickerRectHueLightnessHSL(
 
             ColorDisplayExposedSelectionMenu(
                 color = currentColor,
-                colorModel = colorModel,
-                onColorModelChange = {
-                    colorModel = it
-                }
+                initialColorModel = ColorModel.HSL,
+                backgroundColor = Color.Transparent,
+                textColor = Color.Black
             )
         }
     }

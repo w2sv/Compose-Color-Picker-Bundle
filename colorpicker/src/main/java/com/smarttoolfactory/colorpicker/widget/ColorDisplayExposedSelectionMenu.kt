@@ -36,7 +36,7 @@ fun ColorDisplayExposedSelectionMenu() {
 }
 
 /**
- * Selection menu that displays Color's components in Hex, HSL, or HSL
+ * Selection menu that displays Color's components in RGB, HSL, or HSL
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
