@@ -83,8 +83,6 @@ fun ColorComponentsDisplay(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = horizontalArrangement,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(2.dp)
     ) {
         when (colorModel) {
             ColorModel.RGB -> {
