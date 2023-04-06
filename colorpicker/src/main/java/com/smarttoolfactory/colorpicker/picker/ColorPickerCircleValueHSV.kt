@@ -16,8 +16,8 @@ import com.smarttoolfactory.colorpicker.model.ColorModel
 import com.smarttoolfactory.colorpicker.selector.SelectorCircleHueSaturationHSV
 import com.smarttoolfactory.colorpicker.slider.SliderCircleColorDisplayValueHSV
 import com.smarttoolfactory.colorpicker.widget.ColorDisplayExposedSelectionMenu
+import com.smarttoolfactory.colorpicker.widget.DropdownMenuItemColors
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
-
 
 @Composable
 fun ColorPickerCircleValueHSV(
@@ -26,6 +26,7 @@ fun ColorPickerCircleValueHSV(
     selectionRadius: Dp = 8.dp,
     menuBackgroundColor: Color = Color.Transparent,
     textColor: Color = Color.Black,
+    dropdownMenuItemColors: DropdownMenuItemColors = DropdownMenuItemColors(),
     onColorChange: (Color, String) -> Unit
 ) {
     val hsvArray = ColorUtil.colorToHSV(initialColor)
@@ -72,7 +73,8 @@ fun ColorPickerCircleValueHSV(
                 color = currentColor,
                 initialColorModel = ColorModel.HSV,
                 backgroundColor = menuBackgroundColor,
-                textColor = textColor
+                textColor = textColor,
+                dropdownMenuItemColors = dropdownMenuItemColors
             )
         }
     }

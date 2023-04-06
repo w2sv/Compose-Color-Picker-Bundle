@@ -18,13 +18,17 @@ import com.smarttoolfactory.colorpicker.model.ColorModel
 import com.smarttoolfactory.colorpicker.selector.SelectorRectHueSaturationHSL
 import com.smarttoolfactory.colorpicker.slider.SliderCircleColorDisplayLightnessHSL
 import com.smarttoolfactory.colorpicker.widget.ColorDisplayExposedSelectionMenu
+import com.smarttoolfactory.colorpicker.widget.DropdownMenuItemColors
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
 
 @Composable
 fun ColorPickerRectHueSaturationHSL(
+    initialColor: Color,
     modifier: Modifier = Modifier,
     selectionRadius: Dp = 8.dp,
-    initialColor: Color,
+    menuBackgroundColor: Color = Color.Transparent,
+    textColor: Color = Color.Black,
+    dropdownMenuItemColors: DropdownMenuItemColors = DropdownMenuItemColors(),
     onColorChange: (Color, String) -> Unit
 ) {
     val hslArray = ColorUtil.colorToHSL(initialColor)
@@ -73,8 +77,9 @@ fun ColorPickerRectHueSaturationHSL(
             ColorDisplayExposedSelectionMenu(
                 color = currentColor,
                 initialColorModel = ColorModel.HSL,
-                backgroundColor = Color.Transparent,
-                textColor = Color.Black
+                backgroundColor = menuBackgroundColor,
+                textColor = textColor,
+                dropdownMenuItemColors = dropdownMenuItemColors
             )
         }
     }

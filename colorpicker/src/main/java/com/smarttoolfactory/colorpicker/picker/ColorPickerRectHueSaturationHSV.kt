@@ -18,13 +18,17 @@ import com.smarttoolfactory.colorpicker.model.ColorModel
 import com.smarttoolfactory.colorpicker.selector.SelectorRectHueSaturationHSV
 import com.smarttoolfactory.colorpicker.slider.SliderCircleColorDisplayValueHSV
 import com.smarttoolfactory.colorpicker.widget.ColorDisplayExposedSelectionMenu
+import com.smarttoolfactory.colorpicker.widget.DropdownMenuItemColors
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
 
 @Composable
 fun ColorPickerRectHueSaturationHSV(
+    initialColor: Color,
     modifier: Modifier = Modifier,
     selectionRadius: Dp = 8.dp,
-    initialColor: Color,
+    menuBackgroundColor: Color = Color.Transparent,
+    textColor: Color = Color.Black,
+    dropdownMenuItemColors: DropdownMenuItemColors = DropdownMenuItemColors(),
     onColorChange: (Color, String) -> Unit
 ) {
     val hsvArray = ColorUtil.colorToHSV(initialColor)
@@ -36,7 +40,7 @@ fun ColorPickerRectHueSaturationHSV(
 
     val currentColor =
         Color.hsv(hue = hue, saturation = saturation, value = value, alpha = alpha)
-    
+
     onColorChange(currentColor, ColorUtil.colorToHexAlpha(currentColor))
 
     Column(
@@ -73,8 +77,9 @@ fun ColorPickerRectHueSaturationHSV(
             ColorDisplayExposedSelectionMenu(
                 color = currentColor,
                 initialColorModel = ColorModel.HSV,
-                backgroundColor = Color.Transparent,
-                textColor = Color.Black
+                backgroundColor = menuBackgroundColor,
+                textColor = textColor,
+                dropdownMenuItemColors = dropdownMenuItemColors
             )
         }
     }

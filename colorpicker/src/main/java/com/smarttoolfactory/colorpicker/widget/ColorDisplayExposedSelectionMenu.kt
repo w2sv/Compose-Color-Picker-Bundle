@@ -15,25 +15,25 @@ import androidx.compose.ui.unit.sp
 import com.smarttoolfactory.colorpicker.model.ColorModel
 import com.smarttoolfactory.extendedcolors.util.*
 
-@Composable
-fun ColorDisplayExposedSelectionMenu() {
-    var index by remember { mutableStateOf(0) }
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(2.dp)
-    ) {
-        ExposedSelectionMenu(
-            index = index,
-            options = ColorModel.values().map { it.name },
-            onSelected = {
-                index = it
-            }
-        )
-    }
-}
+//@Composable
+//fun ColorDisplayExposedSelectionMenu() {
+//    var index by remember { mutableStateOf(0) }
+//
+//    Row(
+//        verticalAlignment = Alignment.CenterVertically,
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(2.dp)
+//    ) {
+//        ExposedSelectionMenu(
+//            index = index,
+//            options = ColorModel.values().map { it.name },
+//            onSelected = {
+//                index = it
+//            }
+//        )
+//    }
+//}
 
 /**
  * Selection menu that displays Color's components in RGB, HSL, or HSL
@@ -44,7 +44,8 @@ fun ColorDisplayExposedSelectionMenu(
     color: Color,
     initialColorModel: ColorModel,
     backgroundColor: Color,
-    textColor: Color
+    textColor: Color,
+    dropdownMenuItemColors: DropdownMenuItemColors
 ) {
     var colorModel by remember { mutableStateOf(initialColorModel) }
 
@@ -62,17 +63,18 @@ fun ColorDisplayExposedSelectionMenu(
         ExposedSelectionMenu(
             modifier = Modifier.width(100.dp),
             index = selectedIndex,
-            colors = ExposedDropdownMenuDefaults.textFieldColors(
+            textFieldColors = ExposedDropdownMenuDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
-                focusedLabelColor = Color.Black,
-                unfocusedLabelColor = Color.Black,
-                trailingIconColor = Color.Black,
-                focusedTrailingIconColor = Color.Black,
-                textColor = Color.Black,
+                focusedLabelColor = textColor,
+                unfocusedLabelColor = textColor,
+                trailingIconColor = textColor,
+                focusedTrailingIconColor = textColor,
+                textColor = textColor,
             ),
+            dropdownMenuItemColors = dropdownMenuItemColors,
             options = ColorModel.values().map { it.name },
             onSelected = {
                 selectedIndex = it
