@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.smarttoolfactory.colorpicker.picker.ColorPickerCircleValueHSV
 import com.smarttoolfactory.colorpicker.picker.ColorPickerRectHueLightnessHSL
 import com.smarttoolfactory.colorpicker.picker.ColorPickerRectHueSaturationHSL
 import com.smarttoolfactory.colorpicker.picker.ColorPickerRectHueSaturationHSV
@@ -34,6 +33,7 @@ import com.smarttoolfactory.colorpicker.picker.ColorPickerRingDiamondHSL
 import com.smarttoolfactory.colorpicker.picker.ColorPickerRingRectHSL
 import com.smarttoolfactory.colorpicker.picker.ColorPickerRingRectHSV
 import com.smarttoolfactory.colorpicker.picker.ColorPickerRingRectHex
+import com.smarttoolfactory.colorpicker.picker.HSVColorPickerCircularWithSlidersAndMenu
 import com.smarttoolfactory.colorpicker.picker.M2ColorPicker
 import com.smarttoolfactory.colorpicker.ui.Blue400
 import com.smarttoolfactory.extendedcolors.util.ColorUtil
@@ -322,7 +322,7 @@ fun ColorPickerCircleHSVDialog(
             shape = dialogShape,
             elevation = 2.dp
         ) {
-            ColorPickerCircleValueHSV(
+            HSVColorPickerCircularWithSlidersAndMenu(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 8.dp, vertical = 12.dp),
