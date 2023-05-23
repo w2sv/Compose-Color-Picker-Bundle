@@ -1,14 +1,14 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    alias libs.plugins.library
+    alias libs.plugins.kotlin
     id 'maven-publish'
 }
 
 android {
     namespace 'com.smarttoolfactory.colorpicker'
-    compileSdk 33
+    compileSdk libs.versions.compileSdk.get().toInteger()
     defaultConfig {
-        minSdk 21
+        minSdk libs.versions.minSdk.get().toInteger()
     }
     buildTypes {
         release {
@@ -21,13 +21,13 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(libs.versions.java.get().toInteger())
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.4'
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
     }
     packagingOptions {
         resources {
@@ -51,18 +51,16 @@ afterEvaluate {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation libs.androidx.core
 
-    implementation 'com.github.w2sv:Compose-Extended-Gestures:master-SNAPSHOT'
-    implementation 'com.github.w2sv:Compose-Extended-Colors:1.0.0-rc1'
-    implementation 'com.github.w2sv:Compose-Colorful-Sliders:1.0.0-rc1'
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.ui.tooling
+    implementation libs.androidx.material
+    implementation libs.androidx.runtime
+    implementation libs.androidx.material.icons.extended
+    implementation libs.androidx.compose.material3
 
-//    implementation 'com.github.SmartToolFactory:Compose-Color-Detector:1.0.0'
-
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.runtime:runtime:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.compose.material3:material3:1.0.1"
+    implementation libs.compose.extended.gestures
+    implementation libs.compose.extended.colors
+    implementation libs.compose.colorful.sliders
 }

@@ -42,17 +42,17 @@ dependencies {
 There are various selection of default color pickers and with selectors sliders, and hex displays
 it's possible to create new ones either.
 
-| Hue Ring-Diamond HSL | Hue Ring-Diamond HEX | Hue- Ring-Rect HSL | Hue Ring-Rect HSV| 
-| ----------|-----------| -----------| -----------|
-| <img src="./screenshots/colorpicker/cp_ring_diamond_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_ring_diamond_hex.png" width="250"> | <img src="./screenshots/colorpicker/cp_ring_rect_hsl.png" width="250"> |  <img src="./screenshots/colorpicker/cp_ring_rect_hsv.png" width="250"> |
+| Hue Ring-Diamond HSL                                                      | Hue Ring-Diamond HEX                                                      | Hue- Ring-Rect HSL                                                     | Hue Ring-Rect HSV                                                      | 
+|---------------------------------------------------------------------------|---------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
+| <img src="./screenshots/colorpicker/cp_ring_diamond_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_ring_diamond_hex.png" width="250"> | <img src="./screenshots/colorpicker/cp_ring_rect_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_ring_rect_hsv.png" width="250"> |
 
-| Saturation-Value HSV | Saturation-Lightness HSL | Hue-Circle HSV | Hue Ring-Rect Hex|
-| ----------|-----------| -----------| -----------|
+| Saturation-Value HSV                                                               | Saturation-Lightness HSL                                                               | Hue-Circle HSV                                                                     | Hue Ring-Rect Hex                                                          |
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
 | <img src="./screenshots/colorpicker/cp_rect_saturation_value_hsv.png" width="250"> | <img src="./screenshots/colorpicker/cp_rect_saturation_lightness_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_circle_hue_saturation_hsv.png" width="250"> | <img src="./screenshots/colorpicker/cp_ring_rect_hex_hsv.png" width="250"> |
 
-| HS HSV |  HL HSV |  HS HSL  | HL HSL  |
-| ----------|-----------| -----------| -----------|
-| <img src="./screenshots/colorpicker/cp_rect_hue_saturation_hsv.png" width="250"> | <img src="./screenshots/colorpicker/cp_rect_hue_value_hsv.png" width="250"> | <img src="./screenshots/colorpicker/cp_rect_hue_saturation_hsl.png" width="250"> |  <img src="./screenshots/colorpicker/cp_rect_hue_lightness_hsl.png" width="250"> |
+| HS HSV                                                                           | HL HSV                                                                      | HS HSL                                                                           | HL HSL                                                                          |
+|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| <img src="./screenshots/colorpicker/cp_rect_hue_saturation_hsv.png" width="250"> | <img src="./screenshots/colorpicker/cp_rect_hue_value_hsv.png" width="250"> | <img src="./screenshots/colorpicker/cp_rect_hue_saturation_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_rect_hue_lightness_hsl.png" width="250"> |
 
 ### Implementation Hue Ring-Diamond HSL and ones with Ring Selectors
 
@@ -102,9 +102,9 @@ ColorPickerCircleValueHSV(
 
 ## Gradient Color Pickers
 
-| Hue Ring-Diamond HSL | Hue Ring-Diamond HSL2 | Hue- Ring-Rect HSL | Hue Ring-Rect HSV|
-| ----------|-----------| -----------| -----------|
-| <img src="./screenshots/colorpicker/cp_gradient_diamond_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_gradient_diamond_hsl2.png" width="250"> | <img src="./screenshots/colorpicker/cp_gradient_rect_hsl.png" width="250"> |  <img src="./screenshots/colorpicker/cp_gradient_rect_hsv.png" width="250"> |
+| Hue Ring-Diamond HSL                                                          | Hue Ring-Diamond HSL2                                                          | Hue- Ring-Rect HSL                                                         | Hue Ring-Rect HSV                                                          |
+|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| <img src="./screenshots/colorpicker/cp_gradient_diamond_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_gradient_diamond_hsl2.png" width="250"> | <img src="./screenshots/colorpicker/cp_gradient_rect_hsl.png" width="250"> | <img src="./screenshots/colorpicker/cp_gradient_rect_hsv.png" width="250"> |
 
 ### Implementation
 
@@ -204,9 +204,9 @@ data class BrushColor(
 * `ColorfulSliderDemo` Sliders that can be used with different type of options with different
   Selectors and Pickers
 
-| Selectors      | Gradient Selection   |Gradient Angle   | HSV/HSL Gradients| Colorful Sliders |
-| ----------|-----------|-----------| -----------| -----------|
-| <img src="./screenshots/saturation.gif" width="250"> | <img src="./screenshots/gradient_selection.gif" width="250"> | <img src="./screenshots/gradient_angle.gif" width="250"> |  <img src="./screenshots/hsv_hsl_gradient.gif" width="250"> | <img src="./screenshots/colorful_sliders.gif" width="250"> |
+| Selectors                                            | Gradient Selection                                           | Gradient Angle                                           | HSV/HSL Gradients                                          | Colorful Sliders                                           |
+|------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| <img src="./screenshots/saturation.gif" width="250"> | <img src="./screenshots/gradient_selection.gif" width="250"> | <img src="./screenshots/gradient_angle.gif" width="250"> | <img src="./screenshots/hsv_hsl_gradient.gif" width="250"> | <img src="./screenshots/colorful_sliders.gif" width="250"> |
 
 ## Completed:
 
